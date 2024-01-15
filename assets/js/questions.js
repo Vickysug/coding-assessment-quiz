@@ -125,7 +125,14 @@ choices: [
     ],
      answer:'D) console.log()',
     }
+]
 
+questionTitles.textContent = questions[0].question;
+for (var i = 0; i < questions[0].choices.length; i++) {
+    choices = document.createElement("button");
+    choices.textContent = questions[0].choices[i];
+    choices = document.querySelector("#choices").appendChild(choices);
+}
 
 
 /*Answers:
@@ -140,4 +147,4 @@ B) ===
 A) Executes a block of code repeatedly
 C) Reuse a block of code for a specific task
 
-]
+]*/

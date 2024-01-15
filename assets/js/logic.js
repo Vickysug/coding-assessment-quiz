@@ -5,6 +5,11 @@ var questionsScreen = document.querySelector("#questions");
 var endScreen = document.querySelector("#end-screen");
 var questions = document.querySelector("#questions");
 var choices = document.querySelector("#choices");
+var audioCorrect = ("assets/sfx/correct.wav");
+var audioIncorrect = ("assets/sfx/incorrect.wav");
+var questionTitles = document.querySelector("#qestion-title");
+
+let mySound = new Audio('my_audio_file.wav')
 // create variables for question title and choices
 
 var qIndex = 0;
@@ -38,6 +43,7 @@ timerInterval=setInterval(function(){
 // call function to populate first question
 populateQuestion()
 
+
 }
 
 function populateQuestion() {
@@ -45,8 +51,8 @@ function populateQuestion() {
     // Populate question title
 
     // populate question choices
+   
 }
-
 function end(){
     // stop the timer
     clearInterval(timerInterval)
