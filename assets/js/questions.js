@@ -45,7 +45,7 @@ questions '4. Which keyword is used to declare a variable with a block scope?'
 'D) Both let and const',
 ],
 
-answer: ''
+answer: 'B) let'
 
 },
 
@@ -110,16 +110,22 @@ question: '9. What is the purpose of a JavaScript function?',
 'B) Create a new webpage',
 'C) Reuse a block of code for a specific task',
 'D) Connect to a database',
+]
+ answer: 'C) Reuse a block of code for a specific task'
 }
 
+{
+question: '10. Which of the following is used to print a message to the console?'
+]
+'- A) print()'
+'- B) log()'
+'- C) display()'
+'- D) console.log()'
+]
+ answer:'D) console.log()'
 }
-10. Which of the following is used to print a message to the console?
-- A) print()
-- B) log()
-- C) display()
-- D) console.log()
 
-Answers:
+/*Answers:
 
 B) Building Interactive Web Pages
 B) const
