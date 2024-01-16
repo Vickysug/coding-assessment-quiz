@@ -7,7 +7,7 @@ var questions = document.querySelector("#questions");
 var choices = document.querySelector("#choices");
 var audioCorrect = ("assets/sfx/correct.wav");
 var audioIncorrect = ("assets/sfx/incorrect.wav");
-var questionTitles = document.querySelector("#qestion-title");
+var questionTitles = document.querySelector("#question-title");
 
 let mySound = new Audio('my_audio_file.wav')
 // create variables for question title and choices
@@ -47,7 +47,12 @@ populateQuestion()
 }
 
 function populateQuestion() {
+console.log(questionTitles);
+    questionTitles.textContent = questions[0].question 
+    //create a tag with the question
 
+    //append question to the h2 on line 29 - only need to do it once - google - how to add text to html through javascript
+    // for choices do same thing but run a loop - div on line 30 - how to append a list element to html through javascript
     // Populate question title
 
     // populate question choices
