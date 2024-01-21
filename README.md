@@ -35,4 +35,12 @@ The following animation demonstrates the application functionality:
 
 ![Animation of code quiz. Presses button to start quiz. Clicks the button for the answer to each question, displays if answer was correct or incorrect. Quiz finishes and displays high scores. User adds their intials, then clears their intials and starts over.](./assets/08-web-apis-challenge-demo.gif)
 
+## Screen shot of finished project & link to deployed page
 
+![Alt text](image.png)
+
+https://vickysug.github.io/coding-assessment-quiz/
+
+## Acknowledgments
+
+- Special thanks to Michael Baxter (fellow student and mentor) for guidance, support and feedback throughout the development process as well as allowing me use some parts of his code.

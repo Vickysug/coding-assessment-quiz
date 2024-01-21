@@ -1,71 +1,48 @@
-// Click listener for start Timer
-var startButton = document.querySelector("#start");
-var startScreen = document.querySelector("#start-screen");
-var questionsScreen = document.querySelector("#questions");
+// get the id for div timer
+var timer = document.querySelector(".timer");
+// get the id for span for the time
+var time = document.querySelector("#time");
+// get the id for end screen
 var endScreen = document.querySelector("#end-screen");
-var questions = document.querySelector("#questions");
-var choices = document.querySelector("#choices");
-var audioCorrect = ("assets/sfx/correct.wav");
-var audioIncorrect = ("assets/sfx/incorrect.wav");
-var questionTitles = document.querySelector("#question-title");
+// get the id for the start screen
+var startscreen =document.querySelector("#start-screen")
+// get the id for the questions
+var questionsEl = document.querySelector("#questions");
 
-let mySound = new Audio('my_audio_file.wav')
-// create variables for question title and choices
+var finalScore = document.querySelector("#final-score");
+// set start time for timer
+var timeLeft = 80;
 
-var qIndex = 0;
-
-// Timer Variables
-var time=10;
-var timer = document.querySelector("#time");
-var timerInterval;
-
-// Start Function
-    //Question needs to appear
-    // Start screen to be hidden
-    //timer is started
-
-function start (){
-startScreen.classList.add("hide")
-questionsScreen.classList.remove("hide")
-
-timer.textContent=time
-
-timerInterval=setInterval(function(){
-    time--;
-    timer.textContent=time
-
-    if(time<=0){
-        end()
+// Global declaration varialbe timer interval.
+var timerInt;
+// Get the start button id.
+// Set the event listener for the button to start the timer.
+start = document.querySelector("#start").addEventListener("click", function setTime() {
+    // Set the interval in a variable.
+    sendMessage();
+    var timerInt = setInt(function (){
+    // set to reduce the timer
+    timeLeft --;
+    // put the timer on the screen.
+    timer.textContent = "Time: " + timeLeft;
+    
+    // check to see if the timer has run out.
+    if (timeLeft === 0) {
+        clearInterval(timerInt);
+        questionsEl.classList.remove("scores") ;
+        questionsEl.classList.add("hide");
+        endScreen.classList.remove("hide");
+        endScreen.classList.add("scores");
     }
-
-} , 1000)
-
-// call function to populate first question
-populateQuestion()
-
-
+}, 1000); // sets the speed of the timer in milliseconds.
 }
+);
 
-function populateQuestion() {
-console.log(questionTitles);
-    questionTitles.textContent = questions[0].question 
-    //create a tag with the question
+function sendMessage() {
+    startscreen.classList.remove("start");
+    startscreen.classList.add("hide");
+    questionsEl.classList.remove("hide");
+    questionsEl.classList.add("scores");
+  }
 
-    //append question to the h2 on line 29 - only need to do it once - google - how to add text to html through javascript
-    // for choices do same thing but run a loop - div on line 30 - how to append a list element to html through javascript
-    // Populate question title
-
-    // populate question choices
-   
-}
-function end(){
-    // stop the timer
-    clearInterval(timerInterval)
-
-    questionsScreen.classList.add("hide")
-    endScreen.classList.remove("hide")
-
-}
-
-
-startButton.addEventListener("click", start)
+  

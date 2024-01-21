@@ -1,3 +1,7 @@
+// Get the ID question-title.
+var questionTitle = document.querySelector("#question-title");
+var choicesContainer = document.querySelector("#choices");
+
 var questions = [ 
     { 
      
@@ -37,7 +41,7 @@ var questions = [
  },
  
  {
- questions: '4. Which keyword is used to declare a variable with a block scope?',
+ question: '4. Which keyword is used to declare a variable with a block scope?',
  choices: [
  'A) var',
  'B) let',
@@ -126,25 +130,101 @@ choices: [
      answer:'D) console.log()',
     }
 ]
+// set global variables.
+var score = 0;
+var questionsCurrent = 0;
 
-/*questionTitles.textContent = questions[0].question;
-for (var i = 0; i < questions[0].choices.length; i++) {
-    choices = document.createElement("button");
-    choices.textContent = questions[0].choices[i];
-    choices = document.querySelector("#choices").appendChild(choices);
+        function showQuestion() {
+            var currentQuestion = questions[questionsCurrent];
+            questionTitle.textContent = currentQuestion.question;
+            var correctAnswer = questions[questionsCurrent].answer;
+            
+            // Clear previous choices
+            choicesContainer.innerHTML = "";
+     
+            // add the current answers choices to the buttons.
+            for (var i = 0; i < currentQuestion.choices.length; i++) {
+                var choiceButton = document.createElement("button");
+                choiceButton.textContent = currentQuestion.choices[i];
+                if (choiceButton.innerText == correctAnswer) {
+                    choiceButton.setAttribute("id", "correct");
+                } else {
+                    choiceButton.setAttribute("id", "wrong");
+                }
+                choiceButton.addEventListener("click", choiceClick);
+                choicesContainer.appendChild(choiceButton);
+            }
+            const buttons = document.getElementsByTagName("button");
+        const buttonPressed = e => {
+        if (e.target.id === "correct") {
+            var snd = new Audio('./assets/sfx/correct.wav');
+            snd.play(); 
+        } else if (e.target.id === "wrong"){
+            var snd = new Audio('./assets/sfx/incorrect.wav');
+            snd.play(); 
+            timeLeft -= 10;
+        }
+        }
+        for (let button of buttons) {
+        button.addEventListener("click", buttonPressed);
+        }
+        }
+        
+ function choiceClick() {
+            // Handle the user's choice of answers
+            // Move to the next question
+            questionsCurrent++;
+
+            // Check if there are more questions
+            if (questionsCurrent < questions.length) {
+                showQuestion();
+            } else {
+                clearInterval(timerInt);
+                // display a message or perform an action when questions are answered
+                questionTitle.textContent = "Quiz completed!";
+                choicesContainer.innerHTML = "";
+
+                var score = calculateScore();
+            }
+        }
+
+        var finalScoreEl = document.getElementById("final-score");
+        var initialsInput = document.getElementById("initials");
+
+        function calculateScore() {
+            var score = timeLeft;
+            timeLeft = 1;
+            finalScoreEl.textContent = score; // Update the final-score       
+            return score;
+        }
+
+function scoreSave() {
+    var initials = initialsInput.value.trim(); // Get the initials using the input field
+
+    if (initials !== "") {
+        var scoreData = {
+            initials: initials,
+            score: calculateScore()
+        };
+
+        // Retrieve existing scores from local storage or initialize an empty array
+        var scores = JSON.parse(localStorage.getItem("scores")) || [];
+
+        // Add new score data to the array
+        scores.push(scoreData);
+
+        // Save the updated scores array -  to the local storage
+        localStorage.setItem("scores", JSON.stringify(scores));
+
+        // redirect to a highscores page
+        window.location.href = "highscores.html";
+    } else {
+        alert("Please enter your initials.");
+    }
 }
 
-
-/*Answers:
-
-B) Building Interactive Web Pages
-B) const
-B) Print messages to the console
-B) let
-C) // Comment
-C) let array = [1, 2, 3]
-B) ===
-A) Executes a block of code repeatedly
-C) Reuse a block of code for a specific task
-
-]*/
+var submitButton = document.getElementById("submit");
+submitButton.addEventListener("click", scoreSave);
+        
+        // Initial setup
+        showQuestion();
